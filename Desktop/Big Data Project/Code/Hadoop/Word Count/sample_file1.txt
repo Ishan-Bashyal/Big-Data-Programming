@@ -1,0 +1,8 @@
+Hadoop is a big data framework that allows distributed processing of large datasets across clusters of computers.
+Hadoop helps organizations process big data efficiently.
+Hadoop is open source and free to use.
+The Hadoop ecosystem includes several components like HDFS, MapReduce, and YARN.
+BigData processing requires distributed systems and frameworks like Hadoop.
+Distributed file systems enable storing files across multiple nodes.
+Distributed processing improves overall system performance.
+Apache Hadoop is a popular big data solution for enterprises.

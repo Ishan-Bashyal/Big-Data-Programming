@@ -1,0 +1,8 @@
+HDFS stands for Hadoop Distributed File System.
+HDFS is designed to store large files reliably.
+HDFS uses a replication strategy for fault tolerance.
+MapReduce is the processing framework in Hadoop.
+MapReduce divides data processing into Map and Reduce phases.
+The Map phase processes data in parallel across nodes.
+The Reduce phase aggregates results from mappers.
+Hadoop clusters can scale to thousands of nodes.
