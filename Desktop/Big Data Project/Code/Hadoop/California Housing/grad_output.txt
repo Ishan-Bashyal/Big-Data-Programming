@@ -1,0 +1,10 @@
+weight_0	-0.04062311
+weight_1	-0.06786575
+weight_2	0.01309430
+weight_3	0.00059743
+weight_4	0.00022127
+weight_5	-0.00131876
+weight_6	-0.00003996
+weight_7	0.14211621
+bias	0.26387430
+total_samples	2500
