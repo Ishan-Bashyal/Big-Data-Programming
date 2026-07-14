@@ -1,0 +1,241 @@
+# =========================
+# HDFS Exercise 1: Basic File Upload and Listing
+# =========================
+
+# Create directory structure
+hdfs dfs -mkdir -p /data/2024/sales
+# Creates nested directories in HDFS
+
+# Create local sample file
+echo "Product,Q1,Q2,Q3,Q4
+Widget,100,120,150,180
+Gadget,50,60,75,90" > ~/sales.txt
+# Creates a sample CSV file locally
+
+# Upload file to HDFS
+hdfs dfs -put ~/sales.txt /data/2024/sales/
+# Copies local file to HDFS
+
+# List contents of directory
+hdfs dfs -ls -h /data/2024/sales/
+# Displays uploaded file with human-readable size
+
+
+# =========================
+# HDFS Exercise 2: Copy, Rename and Verify
+# =========================
+
+# Copy file within HDFS
+hdfs dfs -cp /data/2024/sales/sales.txt /data/2024/sales/sales_backup.txt
+# Creates a duplicate file
+
+# Rename the backup file
+hdfs dfs -mv /data/2024/sales/sales_backup.txt /data/2024/sales/sales_2024_backup.txt
+# Renames the copied file
+
+# List files with sizes
+hdfs dfs -ls -h /data/2024/sales/
+# Shows all files and their sizes
+
+# View original file content
+hdfs dfs -cat /data/2024/sales/sales.txt
+# Displays file contents
+
+
+# =========================
+# HDFS Exercise 3: Directory Statistics and Space Management
+# =========================
+
+# Create sample local files
+echo "Test1" > file1.txt
+echo "Test2" > file2.txt
+echo "Test3" > file3.txt
+# Creates three local text files
+
+# Upload files to HDFS
+hdfs dfs -put file1.txt /data/2024/sales/
+hdfs dfs -put file2.txt /data/2024/sales/
+hdfs dfs -put file3.txt /data/2024/sales/
+# Uploads all files to HDFS
+
+# Check directory size
+hdfs dfs -du -h /data/2024/sales/
+# Displays total space used
+
+# Count files
+hdfs dfs -ls /data/2024/sales/ | wc -l
+# Counts number of items
+
+# List file sizes
+hdfs dfs -ls -h /data/2024/sales/
+# Shows individual file sizes
+
+
+# =========================
+# HDFS Exercise 4: Download and Batch Delete
+# =========================
+
+# Download file from HDFS
+hdfs dfs -get /data/2024/sales/sales.txt ~
+# Copies file from HDFS to local system
+
+# Create backup copies
+hdfs dfs -cp /data/2024/sales/sales.txt /data/2024/sales/sales_backup1.txt
+hdfs dfs -cp /data/2024/sales/sales.txt /data/2024/sales/sales_backup2.txt
+# Creates backup files
+
+# Delete backup files using wildcard
+hdfs dfs -rm /data/2024/sales/sales_backup*
+# Removes all matching backup files
+
+# Verify deletion
+hdfs dfs -ls /data/2024/sales/
+# Lists remaining files
+
+
+# =========================
+# HDFS Exercise 5: Permissions and Ownership
+# =========================
+
+# Change file permissions
+hdfs dfs -chmod 744 /data/2024/sales/sales.txt
+# Owner: read/write/execute, Others: read only
+
+# Change file owner
+hdfs dfs -chown hadoop /data/2024/sales/sales.txt
+# Sets new owner
+
+# Change group ownership
+hdfs dfs -chgrp supergroup /data/2024/sales/sales.txt
+# Sets new group
+
+# Verify permission changes
+hdfs dfs -ls /data/2024/sales/
+# Displays updated owner, group and permissions
+
+
+# =========================
+# HDFS Exercise 6: Replication Factor Management
+# =========================
+
+# Check replication factor
+hdfs dfs -stat %r /data/2024/sales/sales.txt
+# Displays current replication factor
+
+# Increase replication factor
+hdfs dfs -setrep -w 3 /data/2024/sales/sales.txt
+# Sets replication factor to 3
+
+# Decrease replication factor
+hdfs dfs -setrep -w 2 /data/2024/sales/sales.txt
+# Sets replication factor to 2
+
+# View block information
+hdfs fsck /data/2024/sales/sales.txt -files -blocks -locations
+# Shows block locations and health
+
+
+# =========================
+# HDFS Exercise 7: Advanced File Inspection
+# =========================
+
+# Display detailed file status
+hdfs dfs -stat /data/2024/sales/sales.txt
+# Shows metadata such as size and timestamps
+
+# Display file checksum
+hdfs dfs -checksum /data/2024/sales/sales.txt
+# Verifies file integrity
+
+# View last lines of file
+hdfs dfs -tail /data/2024/sales/sales.txt
+# Displays end of the file
+
+# Run filesystem check
+hdfs fsck /data/2024/sales/ -files -blocks -locations
+# Displays filesystem health report
+
+
+# =========================
+# HDFS Exercise 8: Recursive Operations
+# =========================
+
+# Create nested directories
+hdfs dfs -mkdir -p /data/2024/sales/region1/city1
+# Creates full directory tree
+
+# Upload multiple files
+hdfs dfs -put *.txt /data/2024/sales/region1/city1/
+# Uploads all .txt files
+
+# Change permissions recursively
+hdfs dfs -chmod -R 755 /data/2024/sales/
+# Applies permissions to all files and folders
+
+# Check recursive disk usage
+hdfs dfs -du -h /data/2024/sales/
+# Displays storage usage
+
+
+# =========================
+# HDFS Exercise 9: Data Cleanup and Archiving
+# =========================
+
+# Create timestamped directories
+hdfs dfs -mkdir /data/2024/sales_2023
+hdfs dfs -mkdir /data/2024/sales_2024
+# Creates yearly directories
+
+# Upload files
+hdfs dfs -put sales.txt /data/2024/sales_2023/
+hdfs dfs -put sales.txt /data/2024/sales_2024/
+# Uploads sample data
+
+# Remove old directory
+hdfs dfs -rm -r /data/2024/sales_2023
+# Deletes old data recursively
+
+# Verify cleanup
+hdfs dfs -ls /data/2024/
+# Lists remaining directories
+
+
+# =========================
+# HDFS Exercise 10: Complete Data Pipeline
+# =========================
+
+# Create input directory
+hdfs dfs -mkdir -p /pipeline/input
+# Creates input folder
+
+# Upload input data
+hdfs dfs -put sales.txt /pipeline/input/
+# Uploads source data
+
+# Create working directory
+hdfs dfs -mkdir /pipeline/working
+# Creates processing folder
+
+# Copy data for processing
+hdfs dfs -cp /pipeline/input/sales.txt /pipeline/working/
+# Simulates processing step
+
+# Create output directory
+hdfs dfs -mkdir /pipeline/output
+# Creates output folder
+
+# Move processed file to output
+hdfs dfs -mv /pipeline/working/sales.txt /pipeline/output/
+# Moves processed result
+
+# Create archive directory
+hdfs dfs -mkdir /pipeline/archive
+# Creates archive folder
+
+# Archive original file
+hdfs dfs -mv /pipeline/input/sales.txt /pipeline/archive/
+# Stores original input safely
+
+# Verify entire pipeline
+hdfs dfs -ls -R /pipeline/
+# Displays complete pipeline directory structure
