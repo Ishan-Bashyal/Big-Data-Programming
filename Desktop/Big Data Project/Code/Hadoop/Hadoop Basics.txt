@@ -1,0 +1,69 @@
+Hadoop
+
+# Start all Hadoop daemons (NameNode, DataNode, ResourceManager, etc.)
+start-all.sh
+# Starts full Hadoop cluster (used in pseudo-distributed setup)
+
+# Check running Hadoop processes
+jps
+# Confirms NameNode, DataNode, ResourceManager, NodeManager are running
+
+# Check Hadoop version
+hdfs version
+# Displays installed Hadoop version info
+
+# Get HDFS cluster report
+hdfs dfsadmin -report
+# Shows storage capacity, usage, and datanode status
+
+# Turn ON safe mode (read-only mode)
+hdfs dfsadmin -safemode enter
+# Used for maintenance (no write operations allowed)
+
+# Turn OFF safe mode
+hdfs dfsadmin -safemode leave
+# Enables read/write operations again
+
+# List root directory in HDFS
+hdfs dfs -ls /
+# Shows all directories/files in root
+
+# List with human-readable sizes
+hdfs dfs -ls -h /
+# Shows sizes in KB, MB, GB
+
+# Create /user directory
+hdfs dfs -mkdir /user
+# Creates a directory in HDFS root
+
+# Change permissions of /user directory
+hdfs dfs -chmod 777 /user
+# Gives full access (read/write/execute)
+
+# Create nested directories
+hdfs dfs -mkdir -p /Batch37AI/SectionB/hadoop/
+# Creates full directory path
+
+# Upload file to HDFS
+hdfs dfs -put /home/potato/Desktop/students.txt /user
+# Copies file from local → HDFS
+
+# Change permissions of Batch37AI directory
+hdfs dfs -chmod 777 /Batch37AI
+# Full access for that folder
+
+# Download directory from HDFS to local system
+hdfs dfs -get /Batch37AI /home/potato/Desktop
+# Copies from HDFS → local machine
+
+# Copy directory within HDFS
+hdfs dfs -cp /Batch37AI /user
+# Creates duplicate inside HDFS
+
+# Upload file to specific directory
+hdfs dfs -put /home/potato/Desktop/students.txt /user/Batch37AI/SectionB/hadoop
+# Places file in correct nested directory
+
+# View file content in HDFS
+hdfs dfs -cat /user/Batch37AI/SectionB/hadoop/students.txt
+# Displays file content
