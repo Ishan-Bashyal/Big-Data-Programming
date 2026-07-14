@@ -1,0 +1,4 @@
+Hadoop is a powerful framework for big data processing.
+Big data requires distributed systems like Hadoop and Spark.
+Hadoop enables scalable and reliable data storage.
+Data is important in modern computing.
